@@ -14,6 +14,10 @@ function updateNavOnScroll() {
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
 
+  if (!sections.length) {
+    return;
+  }
+
   window.addEventListener('scroll', () => {
     let current = '';
 
@@ -29,11 +33,56 @@ function updateNavOnScroll() {
 
     // Update active state on nav links
     navLinks.forEach((link) => {
+      if (!link.getAttribute('href').startsWith('#')) {
+        return;
+      }
       link.classList.remove('active');
       if (link.getAttribute('href') === `#${current}`) {
         link.classList.add('active');
       }
     });
+  });
+}
+
+// ==========================================================================
+// Theme Toggle (Dark/Light)
+// ==========================================================================
+
+function initThemeToggle() {
+  const toggleButton = document.querySelector('[data-theme-toggle]');
+  const storageKey = 'site-theme';
+
+  if (!toggleButton) {
+    return;
+  }
+
+  const applyTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    const isLight = theme === 'light';
+    toggleButton.textContent = isLight ? 'Dark mode' : 'Light mode';
+    toggleButton.setAttribute('aria-pressed', String(isLight));
+  };
+
+  let savedTheme = null;
+  try {
+    savedTheme = localStorage.getItem(storageKey);
+  } catch (error) {
+    savedTheme = null;
+  }
+
+  const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
+  applyTheme(initialTheme);
+
+  toggleButton.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    applyTheme(nextTheme);
+    try {
+      localStorage.setItem(storageKey, nextTheme);
+    } catch (error) {
+      // Ignore storage errors and keep the in-memory theme.
+    }
   });
 }
 
@@ -196,6 +245,7 @@ function initKeyboardNav() {
 document.addEventListener('DOMContentLoaded', () => {
   updateNavOnScroll();
   enhanceSmoothScroll();
+  initThemeToggle();
   updateYear();
   lazyLoadImages();
   initScrollAnimations();
