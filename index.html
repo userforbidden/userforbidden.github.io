@@ -7,27 +7,25 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Navigation Header -->
   <header class="site-header">
     <div class="container">
       <div class="header-content">
         <div class="logo">
-          <a href="#home">Saranyan Senthivel</a>
+          <a href="index.html">Saranyan Senthivel</a>
         </div>
         <nav class="nav-menu">
-          <a href="#home" class="nav-link">Home</a>
-          <a href="#research" class="nav-link">Research</a>
-          <a href="#publications" class="nav-link">Publications</a>
-          <a href="#service" class="nav-link">Service</a>
-          <a href="#links" class="nav-link">Links</a>
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="pages/research.html" class="nav-link">Research</a>
+          <a href="pages/publications.html" class="nav-link">Publications</a>
+          <a href="pages/service.html" class="nav-link">Service</a>
+          <a href="pages/links.html" class="nav-link">Links</a>
         </nav>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
+    <section class="hero-section">
       <div class="container">
         <div class="hero-content">
           <p class="eyebrow">Cybersecurity Researcher • Software Engineer</p>
@@ -38,171 +36,41 @@
             software engineering to solve real-world security challenges.
           </p>
           <div class="hero-actions">
-            <a href="#publications" class="btn btn-primary">View Publications</a>
-            <a href="#links" class="btn btn-secondary">Scholar Profile</a>
+            <a href="pages/publications.html" class="btn btn-primary">View Publications</a>
+            <a href="pages/links.html" class="btn btn-secondary">Scholar Profile</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Research Areas Section -->
-    <section id="research" class="section research-section">
+    <section class="section research-section">
       <div class="container">
-        <h2>Research Areas</h2>
-        <p class="section-subtitle">Core focus domains in cybersecurity and software engineering</p>
-        <div class="card-grid">
-          <div class="research-card">
-            <h3>ICS / SCADA Security</h3>
-            <p>Securing critical infrastructure and control systems against emerging threats.</p>
-          </div>
-          <div class="research-card">
-            <h3>Cybersecurity</h3>
-            <p>Defense mechanisms, threat analysis, and security protocols for digital systems.</p>
-          </div>
-          <div class="research-card">
-            <h3>Mobile & Platform Security</h3>
-            <p>Security challenges in mobile devices and platform ecosystems.</p>
-          </div>
-          <div class="research-card">
-            <h3>Software Systems</h3>
-            <p>Designing and analyzing robust software architectures with security in mind.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Publications Section -->
-    <section id="publications" class="section publications-section">
-      <div class="container">
-        <h2>Selected Publications</h2>
-        <p class="section-subtitle">Recent research and contributions</p>
-        <div class="publication-list">
-          <div class="publication-item">
-            <h3>A SCADA system testbed for cybersecurity and forensic research and pedagogy</h3>
-            <p class="publication-meta">I Ahmed, V Roussev, W Johnson, S Senthivel, S Sudhakaran (2016) | Proceedings of the 2nd Annual Industrial Control System Security Workshop, 1-9</p>
-            <p class="publication-description">A practical SCADA testbed for cybersecurity experimentation, digital forensics research, and classroom pedagogy.</p>
-            <div class="publication-links">
-              <a href="https://dl.acm.org/doi/pdf/10.1145/3018981.3018984" target="_blank" rel="noopener noreferrer" class="link-icon">PDF</a>
-            </div>
-          </div>
-
-          <div class="publication-item">
-            <h3>SCADA network forensics of the PCCC protocol</h3>
-            <p class="publication-meta">S Senthivel, I Ahmed, V Roussev (2017) | Digital Investigation 22, S57-S65</p>
-            <p class="publication-description">Forensic analysis methods and artifacts for investigating SCADA network activity over the PCCC protocol. </p>
-            <div class="publication-links">
-              <a href="https://www.sciencedirect.com/science/article/pii/S1742287617301998" target="_blank" rel="noopener noreferrer" class="link-icon">Article</a>
-            </div>
-          </div>
-
-          <div class="publication-item">
-            <h3>Denial of engineering operations attacks in industrial control systems</h3>
-            <p class="publication-meta">S Senthivel, S Dhungana, H Yoo, I Ahmed, V Roussev (2018) | Proceedings of the Eighth ACM Conference on Data and Application Security and Privacy</p>
-            <p class="publication-description">Study of denial-of-engineering-operations attacks in ICS environments and their implications for operational resilience. </p>
-            <div class="publication-links">
-              <a href="https://dl.acm.org/doi/pdf/10.1145/3176258.3176319" target="_blank" rel="noopener noreferrer" class="link-icon">PDF</a>
-            </div>
-          </div>
-
-          <div class="publication-item">
-            <h3>First Steps, Lasting Impact: Platform-Aware Forensics for the Next Generation of Analysts</h3>
-            <p class="publication-meta">V Jain, S Sudhakaran, S Senthivel (2026) | arXiv preprint arXiv:2602.00160</p>
-            <p class="publication-description">A platform-aware forensics perspective for training and enabling future digital forensic analysts in evolving system environments.</p>
-            <div class="publication-links">
-              <a href="https://arxiv.org/pdf/2602.00160" target="_blank" rel="noopener noreferrer" class="link-icon">PDF</a>
-            </div>
-          </div>
-
-          <div class="publication-item">
-            <h3>PP3D: An In-Browser Vision-Based Defense Against Web Behavior Manipulation Attacks</h3>
-            <p class="publication-meta">S King, I Ozen, K Subramani, S Senthivel, P Vadrevu, R Perdisci (2025) | arXiv preprint arXiv:2510.18465</p>
-            <p class="publication-description">An in-browser, vision-based defense architecture for mitigating web behavior manipulation attacks.</p>
-            <div class="publication-links">
-              <a href="https://arxiv.org/pdf/2510.18465" target="_blank" rel="noopener noreferrer" class="link-icon">PDF</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Service Section -->
-    <section id="service" class="section service-section">
-      <div class="container">
-        <h2>Service Activities</h2>
-        <p class="section-subtitle">Professional contributions and community engagement</p>
-        <div class="service-grid">
-          <div class="service-card">
-            <h3>Reviewing</h3>
-            <!-- TODO: Add specific conferences, journals, and years -->
-            <ul>
-              <li>Placeholder: Conference Name (Year)</li>
-              <li>Placeholder: Journal Name (Year)</li>
-              <li>Placeholder: Workshop Name (Year)</li>
-            </ul>
-          </div>
-
-          <div class="service-card">
-            <h3>Mentoring & Advising</h3>
-            <!-- TODO: Add mentoring roles and details -->
-            <ul>
-              <li>Placeholder: Graduate student mentoring</li>
-              <li>Placeholder: Capstone project advisor</li>
-              <li>Placeholder: Research internship supervision</li>
-            </ul>
-          </div>
-
-          <div class="service-card">
-            <h3>Professional Service</h3>
-            <!-- TODO: Add professional roles and activities -->
-            <ul>
-              <li>Placeholder: Committee membership</li>
-              <li>Placeholder: Working group participation</li>
-              <li>Placeholder: Industry collaboration</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Links / Profiles Section -->
-    <section id="links" class="section links-section">
-      <div class="container">
-        <h2>Connect & Explore</h2>
-        <p class="section-subtitle">Find my work and get in touch</p>
+        <h2>Explore by Section</h2>
+        <p class="section-subtitle">Each area now has a dedicated page for cleaner navigation and easier maintenance.</p>
         <div class="links-grid">
-          
-          <a href="https://scholar.google.com/citations?user=RIzBkIQAAAAJ&hl=en" target="_blank" class="link-card" title="Google Scholar Profile">
-            <span class="link-icon">🎓</span>
-            <span class="link-label">Google Scholar</span>
+          <a href="pages/research.html" class="link-card" title="Go to Research page">
+            <span class="link-icon">🧪</span>
+            <span class="link-label">Research</span>
           </a>
-          <a href="https://www.researchgate.net/profile/Saranyan-Senthivel" target="_blank" rel="noopener noreferrer" class="link-card" title="ResearchGate Profile">
-            <span class="link-icon">🔬</span>
-            <span class="link-label">ResearchGate</span>
+          <a href="pages/publications.html" class="link-card" title="Go to Publications page">
+            <span class="link-icon">📚</span>
+            <span class="link-label">Publications</span>
           </a>
-          <a href="https://github.com/userforbidden" target="_blank" class="link-card" title="GitHub Repository">
-            <span class="link-icon">⚙️</span>
-            <span class="link-label">GitHub</span>
+          <a href="pages/service.html" class="link-card" title="Go to Service page">
+            <span class="link-icon">🤝</span>
+            <span class="link-label">Service</span>
           </a>
-          <a href="https://www.linkedin.com/in/saranyansenthivel/" target="_blank" class="link-card" title="LinkedIn Profile">
-            <span class="link-icon">💼</span>
-            <span class="link-label">LinkedIn</span>
-          </a>
-          <a href="https://example.com/cv.pdf" target="_blank" class="link-card" title="Download CV">
-            <span class="link-icon">📄</span>
-            <span class="link-label">CV</span>
-          </a>
-          <a href="mailto:saranyansenthivel@gmail.com" class="link-card" title="Send Email">
-            <span class="link-icon">✉️</span>
-            <span class="link-label">Email</span>
+          <a href="pages/links.html" class="link-card" title="Go to Links page">
+            <span class="link-icon">🔗</span>
+            <span class="link-label">Connect</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <p>&copy; 2026 Saranyan Senthivel. All rights reserved. | <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank">Site Source</a></p>
+        <p>&copy; 2026 Saranyan Senthivel. All rights reserved. | <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank" rel="noopener noreferrer">Site Source</a></p>
       </div>
     </footer>
   </main>

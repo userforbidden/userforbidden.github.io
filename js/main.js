@@ -200,11 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
   lazyLoadImages();
   initScrollAnimations();
   initKeyboardNav();
-
-  // Log that site is ready (optional, for debugging)
-  if (process.env.NODE_ENV !== 'production') {
-    console.log('🌐 Personal research website initialized');
-  }
 });
 
 // ==========================================================================
