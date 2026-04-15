@@ -145,6 +145,14 @@ body {
   color: var(--color-accent-primary);
 }
 
+.nav-link.active {
+  color: var(--color-accent-primary);
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
 .nav-link:hover::after {
   width: 100%;
 }
