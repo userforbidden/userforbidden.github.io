@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saranyan Senthivel - Researcher & Software Engineer</title>
+  <meta name="description" content="Saranyan Senthivel — Cybersecurity researcher and software engineer working on ICS/SCADA security, mobile security, and software systems.">
+  <meta name="theme-color" content="#05060f">
+  <title>Saranyan Senthivel — Cybersecurity Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="container">
       <div class="header-content">
@@ -20,7 +27,7 @@
           <a href="pages/service.html" class="nav-link">Service</a>
           <a href="pages/links.html" class="nav-link">Links</a>
         </nav>
-        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch color theme">Light mode</button>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch color theme">Light</button>
       </div>
     </div>
   </header>
@@ -29,16 +36,16 @@
     <section class="hero-section">
       <div class="container">
         <div class="hero-content">
-          <p class="eyebrow">Cybersecurity Researcher • Software Engineer</p>
-          <h1 class="hero-title">Building Secure Systems and Advancing Cybersecurity Research</h1>
-          <p class="hero-description">
-            I am an active researcher focusing on ICS/SCADA security, mobile and platform security, 
-            cybersecurity, and software systems. My work bridges theoretical research with practical 
-            software engineering to solve real-world security challenges.
+          <p class="eyebrow reveal">Cybersecurity Researcher · Software Engineer</p>
+          <h1 class="hero-title reveal" data-delay="1">Building secure systems and advancing cybersecurity research.</h1>
+          <p class="hero-description reveal" data-delay="2">
+            I'm an active researcher focused on ICS/SCADA security, mobile and platform security,
+            and resilient software systems. My work bridges rigorous research with practical
+            engineering to defend the systems that run the modern world.
           </p>
-          <div class="hero-actions">
-            <a href="pages/publications.html" class="btn btn-primary">View Publications</a>
-            <a href="pages/links.html" class="btn btn-secondary">Scholar Profile</a>
+          <div class="hero-actions reveal" data-delay="3">
+            <a href="pages/publications.html" class="btn btn-primary">Explore Publications</a>
+            <a href="pages/links.html" class="btn btn-secondary">Get in Touch</a>
           </div>
         </div>
       </div>
@@ -46,7 +53,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p>&copy; 2026 Saranyan Senthivel. All rights reserved. | <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank" rel="noopener noreferrer">Site Source</a></p>
+        <p>© <span id="year">2026</span> Saranyan Senthivel · <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank" rel="noopener noreferrer">Site Source</a></p>
       </div>
     </footer>
   </main>

@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Connect and Explore - Saranyan Senthivel</title>
+  <meta name="description" content="Connect with Saranyan Senthivel — scholar profiles, GitHub, LinkedIn, CV, and email.">
+  <meta name="theme-color" content="#05060f">
+  <title>Connect — Saranyan Senthivel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="container">
       <div class="header-content">
@@ -20,7 +27,7 @@
           <a href="service.html" class="nav-link">Service</a>
           <a href="links.html" class="nav-link active">Links</a>
         </nav>
-        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch color theme">Light mode</button>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch color theme">Light</button>
       </div>
     </div>
   </header>
@@ -28,30 +35,30 @@
   <main>
     <section class="section links-section">
       <div class="container">
-        <h2>Connect & Explore</h2>
-        <p class="section-subtitle">Find my work and get in touch</p>
+        <h2 class="reveal">Connect &amp; Explore</h2>
+        <p class="section-subtitle reveal" data-delay="1">Find my work and get in touch.</p>
         <div class="links-grid">
-          <a href="https://scholar.google.com/citations?user=RIzBkIQAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="link-card" title="Google Scholar Profile">
+          <a href="https://scholar.google.com/citations?user=RIzBkIQAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="link-card reveal" data-delay="1" title="Google Scholar Profile">
             <span class="link-icon">🎓</span>
             <span class="link-label">Google Scholar</span>
           </a>
-          <a href="https://www.researchgate.net/profile/Saranyan-Senthivel" target="_blank" rel="noopener noreferrer" class="link-card" title="ResearchGate Profile">
+          <a href="https://www.researchgate.net/profile/Saranyan-Senthivel" target="_blank" rel="noopener noreferrer" class="link-card reveal" data-delay="2" title="ResearchGate Profile">
             <span class="link-icon">🔬</span>
             <span class="link-label">ResearchGate</span>
           </a>
-          <a href="https://github.com/userforbidden" target="_blank" rel="noopener noreferrer" class="link-card" title="GitHub Repository">
+          <a href="https://github.com/userforbidden" target="_blank" rel="noopener noreferrer" class="link-card reveal" data-delay="3" title="GitHub Repository">
             <span class="link-icon">⚙️</span>
             <span class="link-label">GitHub</span>
           </a>
-          <a href="https://www.linkedin.com/in/saranyansenthivel/" target="_blank" rel="noopener noreferrer" class="link-card" title="LinkedIn Profile">
+          <a href="https://www.linkedin.com/in/saranyansenthivel/" target="_blank" rel="noopener noreferrer" class="link-card reveal" data-delay="4" title="LinkedIn Profile">
             <span class="link-icon">💼</span>
             <span class="link-label">LinkedIn</span>
           </a>
-          <a href="https://example.com/cv.pdf" target="_blank" rel="noopener noreferrer" class="link-card" title="Download CV">
+          <a href="../assets/saranyan_cv.pdf" target="_blank" rel="noopener noreferrer" class="link-card reveal" data-delay="5" title="View CV (PDF)">
             <span class="link-icon">📄</span>
             <span class="link-label">CV</span>
           </a>
-          <a href="mailto:saranyansenthivel@gmail.com" class="link-card" title="Send Email">
+          <a href="mailto:saranyansenthivel@gmail.com" class="link-card reveal" data-delay="5" title="Send Email">
             <span class="link-icon">✉️</span>
             <span class="link-label">Email</span>
           </a>
@@ -61,7 +68,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p>&copy; 2026 Saranyan Senthivel. All rights reserved. | <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank" rel="noopener noreferrer">Site Source</a></p>
+        <p>© <span id="year">2026</span> Saranyan Senthivel · <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank" rel="noopener noreferrer">Site Source</a></p>
       </div>
     </footer>
   </main>

@@ -1,121 +1,140 @@
 /**
- * Main JavaScript for Personal Research Website
- * Lightweight functionality for smooth scrolling, navigation, and interactivity
+ * Main JS — Saranyan Senthivel
+ * Lightweight interactivity for the futuristic UI:
+ * - theme toggle (persisted to localStorage)
+ * - scroll-reveal animations
+ * - cursor-following ambient glow (desktop only)
+ * - smooth scroll for in-page anchors
+ * - dynamic year, lazy images, keyboard nav
  */
 
 // ==========================================================================
-// Navigation Active State on Scroll
-// ==========================================================================
-
-/**
- * Updates navigation link active state based on current scroll position
- */
-function updateNavOnScroll() {
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('section[id]');
-
-  if (!sections.length) {
-    return;
-  }
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-
-    // Find which section is currently in view
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-
-      if (pageYOffset >= sectionTop - 200) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    // Update active state on nav links
-    navLinks.forEach((link) => {
-      if (!link.getAttribute('href').startsWith('#')) {
-        return;
-      }
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  });
-}
-
-// ==========================================================================
-// Theme Toggle (Dark/Light)
+// Theme Toggle (Dark / Light)
 // ==========================================================================
 
 function initThemeToggle() {
-  const toggleButton = document.querySelector('[data-theme-toggle]');
-  const storageKey = 'site-theme';
+  const buttons = document.querySelectorAll('[data-theme-toggle]');
+  if (!buttons.length) return;
 
-  if (!toggleButton) {
-    return;
-  }
+  const storageKey = 'site-theme';
 
   const applyTheme = (theme) => {
     document.documentElement.setAttribute('data-theme', theme);
     const isLight = theme === 'light';
-    toggleButton.textContent = isLight ? 'Dark mode' : 'Light mode';
-    toggleButton.setAttribute('aria-pressed', String(isLight));
+    buttons.forEach((btn) => {
+      btn.textContent = isLight ? 'Dark' : 'Light';
+      btn.setAttribute('aria-pressed', String(isLight));
+    });
   };
 
   let savedTheme = null;
-  try {
-    savedTheme = localStorage.getItem(storageKey);
-  } catch (error) {
-    savedTheme = null;
-  }
+  try { savedTheme = localStorage.getItem(storageKey); } catch (_) { /* ignore */ }
 
   const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
   applyTheme(initialTheme);
 
-  toggleButton.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-    applyTheme(nextTheme);
-    try {
-      localStorage.setItem(storageKey, nextTheme);
-    } catch (error) {
-      // Ignore storage errors and keep the in-memory theme.
-    }
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem(storageKey, next); } catch (_) { /* ignore */ }
+    });
   });
 }
 
 // ==========================================================================
-// Smooth Scroll Enhancement (complements CSS smooth-scroll)
+// Cursor-following ambient glow (desktop only)
 // ==========================================================================
 
-/**
- * Adds smooth scroll behavior with offset for sticky header
- */
-function enhanceSmoothScroll() {
-  const navLinks = document.querySelectorAll('.nav-link, .btn');
+function initCursorGlow() {
+  const glow = document.querySelector('.cursor-glow');
+  if (!glow) return;
 
-  navLinks.forEach((link) => {
+  // Skip on touch devices / reduced motion
+  const isCoarse = window.matchMedia('(hover: none)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (isCoarse || reduceMotion) {
+    glow.style.display = 'none';
+    return;
+  }
+
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight / 2;
+  let currentX = targetX;
+  let currentY = targetY;
+  let rafId = null;
+
+  const tick = () => {
+    // Smooth easing
+    currentX += (targetX - currentX) * 0.18;
+    currentY += (targetY - currentY) * 0.18;
+    glow.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
+    rafId = requestAnimationFrame(tick);
+  };
+
+  document.addEventListener('mousemove', (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
+
+  document.addEventListener('mouseleave', () => {
+    glow.style.opacity = '0';
+  });
+
+  document.addEventListener('mouseenter', () => {
+    glow.style.opacity = '1';
+  });
+
+  // kick it off
+  tick();
+}
+
+// ==========================================================================
+// Scroll-reveal animations
+// ==========================================================================
+
+function initScrollReveal() {
+  const elements = document.querySelectorAll('.reveal');
+  if (!elements.length) return;
+
+  if (!('IntersectionObserver' in window)
+      || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    elements.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  elements.forEach((el) => observer.observe(el));
+}
+
+// ==========================================================================
+// Smooth scroll for in-page anchors
+// ==========================================================================
+
+function enhanceSmoothScroll() {
+  const links = document.querySelectorAll('a[href^="#"]');
+  links.forEach((link) => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
 
-      // Only handle hash links that point to sections
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const targetElement = document.querySelector(href);
-
-        if (targetElement) {
-          // Account for sticky header height
-          const headerHeight = document.querySelector('.site-header').offsetHeight;
-          const targetPosition = targetElement.offsetTop - headerHeight - 20;
-
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth',
-          });
-        }
-      }
+      e.preventDefault();
+      const header = document.querySelector('.site-header');
+      const headerH = header ? header.offsetHeight : 0;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - headerH - 20;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
   });
 }
@@ -124,31 +143,21 @@ function enhanceSmoothScroll() {
 // Dynamic year in footer
 // ==========================================================================
 
-/**
- * Updates the year in footer if needed (for copyright, etc.)
- * Uncomment if you add a <span id="year"></span> in footer
- */
 function updateYear() {
-  const yearElement = document.getElementById('year');
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
+  const el = document.getElementById('year');
+  if (el) el.textContent = new Date().getFullYear();
 }
 
 // ==========================================================================
-// Lazy Load Images (for future use with assets)
+// Lazy load images (data-src)
 // ==========================================================================
 
-/**
- * Lazy loads images with data-src attribute
- * Usage: <img data-src="image.jpg" src="placeholder.jpg" alt="Description">
- */
 function lazyLoadImages() {
-  // Only run if Intersection Observer is supported
-  if ('IntersectionObserver' in window) {
-    const images = document.querySelectorAll('img[data-src]');
+  const imgs = document.querySelectorAll('img[data-src]');
+  if (!imgs.length) return;
 
-    const imageObserver = new IntersectionObserver((entries, observer) => {
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target;
@@ -158,12 +167,9 @@ function lazyLoadImages() {
         }
       });
     });
-
-    images.forEach((img) => imageObserver.observe(img));
+    imgs.forEach((img) => obs.observe(img));
   } else {
-    // Fallback: load all images immediately
-    const images = document.querySelectorAll('img[data-src]');
-    images.forEach((img) => {
+    imgs.forEach((img) => {
       img.src = img.dataset.src;
       img.removeAttribute('data-src');
     });
@@ -171,122 +177,72 @@ function lazyLoadImages() {
 }
 
 // ==========================================================================
-// Animation on Scroll Visibility
+// Keyboard navigation between header nav links
 // ==========================================================================
 
-/**
- * Adds subtle fade-in animation when elements become visible
- * Add class "animate-on-scroll" to elements you want animated
- */
-function initScrollAnimations() {
-  if ('IntersectionObserver' in window) {
-    const elements = document.querySelectorAll('.animate-on-scroll');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-    });
-
-    elements.forEach((el) => observer.observe(el));
-  }
-}
-
-// ==========================================================================
-// Keyboard Navigation
-// ==========================================================================
-
-/**
- * Supports keyboard navigation with arrow keys and Enter
- */
 function initKeyboardNav() {
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+  if (!navLinks.length) return;
 
   document.addEventListener('keydown', (e) => {
-    // Don't interfere with form inputs
-    if (
-      e.target.tagName === 'INPUT'
-      || e.target.tagName === 'TEXTAREA'
-      || e.target.tagName === 'SELECT'
-    ) {
-      return;
-    }
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
 
-    // Skip keyboard nav if alt, ctrl, or meta keys are pressed
-    if (e.altKey || e.ctrlKey || e.metaKey) {
-      return;
-    }
-
-    // Find currently focused nav item
-    const currentIndex = Array.from(navLinks).findIndex((link) => link === document.activeElement);
+    const currentIndex = Array.from(navLinks).findIndex((l) => l === document.activeElement);
+    if (currentIndex === -1) return;
 
     if (e.key === 'ArrowLeft' && currentIndex > 0) {
+      e.preventDefault();
       navLinks[currentIndex - 1].focus();
     } else if (e.key === 'ArrowRight' && currentIndex < navLinks.length - 1) {
+      e.preventDefault();
       navLinks[currentIndex + 1].focus();
-    } else if (e.key === 'Enter' && document.activeElement.matches('a[href^="#"]')) {
-      document.activeElement.click();
     }
   });
 }
 
 // ==========================================================================
-// Initialize on DOM Ready
+// Subtle parallax for hero ambient glow
 // ==========================================================================
 
-/**
- * Run all initializations when DOM is fully loaded
- */
+function initHeroParallax() {
+  const hero = document.querySelector('.hero-section');
+  if (!hero) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 12;
+    hero.style.setProperty('--hero-tx', `${x}px`);
+    hero.style.setProperty('--hero-ty', `${y}px`);
+  });
+}
+
+// ==========================================================================
+// Init
+// ==========================================================================
+
 document.addEventListener('DOMContentLoaded', () => {
-  updateNavOnScroll();
-  enhanceSmoothScroll();
   initThemeToggle();
+  initScrollReveal();
+  initCursorGlow();
+  enhanceSmoothScroll();
   updateYear();
   lazyLoadImages();
-  initScrollAnimations();
   initKeyboardNav();
+  initHeroParallax();
 });
 
-// ==========================================================================
-// Utilities
-// ==========================================================================
-
-/**
- * Utility: Debounce function for performance
- * Usage: const debouncedFunc = debounce(myFunction, 300);
- */
+// Utility exports (kept for compatibility)
 function debounce(func, wait) {
-  let timeout;
-  return function debouncedFunction(...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), wait);
+  let t;
+  return function (...args) {
+    clearTimeout(t);
+    t = setTimeout(() => func.apply(this, args), wait);
   };
 }
 
-/**
- * Utility: Get query parameter from URL
- * Usage: const param = getQueryParam('section');
- */
-function getQueryParam(param) {
-  const params = new URLSearchParams(window.location.search);
-  return params.get(param);
-}
-
-// Export for use in other scripts if needed (optional)
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    updateNavOnScroll,
-    enhanceSmoothScroll,
-    updateYear,
-    lazyLoadImages,
-    initScrollAnimations,
-    initKeyboardNav,
-    debounce,
-    getQueryParam,
-  };
+  module.exports = { debounce };
 }

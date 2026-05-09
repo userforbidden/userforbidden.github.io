@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Service Activities - Saranyan Senthivel</title>
+  <meta name="description" content="Service activities — reviewing, mentoring, and professional service.">
+  <meta name="theme-color" content="#05060f">
+  <title>Service — Saranyan Senthivel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="container">
       <div class="header-content">
@@ -20,7 +27,7 @@
           <a href="service.html" class="nav-link active">Service</a>
           <a href="links.html" class="nav-link">Links</a>
         </nav>
-        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch color theme">Light mode</button>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch color theme">Light</button>
       </div>
     </div>
   </header>
@@ -28,36 +35,35 @@
   <main>
     <section class="section service-section">
       <div class="container">
-        <h2>Service Activities</h2>
-        <p class="section-subtitle">Professional contributions and community engagement</p>
+        <h2 class="reveal">Service &amp; Collaboration</h2>
+        <p class="section-subtitle reveal" data-delay="1">Active research partnerships, conference contributions, and cross-sector engagement supporting U.S. cybersecurity priorities.</p>
         <div class="service-grid">
-          <div class="service-card">
-            <h3>Reviewing</h3>
-            <!-- TODO: Add specific conferences, journals, and years -->
+          <div class="service-card reveal" data-delay="1">
+            <h3>Active Research Collaborations</h3>
             <ul>
-              <li>Placeholder: Conference Name (Year)</li>
-              <li>Placeholder: Journal Name (Year)</li>
-              <li>Placeholder: Workshop Name (Year)</li>
+              <li><strong>University of Georgia</strong> — with Dr. Roberto Perdisci &amp; Spencer King on large-scale detection of malicious advertising and social-engineering campaigns.</li>
+              <li><strong>Louisiana State University</strong> — with Dr. Phani Vadrevu, evaluating vulnerabilities in mobile Single Sign-On (SSO) implementations and reviewing platform security standards.</li>
+              <li><strong>Florida Institute of Technology</strong> — with Dr. Sneha Sudhakaran on cross-platform digital-evidence acquisition and analysis across Windows and Linux.</li>
             </ul>
           </div>
 
-          <div class="service-card">
-            <h3>Mentoring & Advising</h3>
-            <!-- TODO: Add mentoring roles and details -->
+          <div class="service-card reveal" data-delay="2">
+            <h3>Conference &amp; Venue Contributions</h3>
             <ul>
-              <li>Placeholder: Graduate student mentoring</li>
-              <li>Placeholder: Capstone project advisor</li>
-              <li>Placeholder: Research internship supervision</li>
+              <li><strong>ACSAC 2025</strong> — co-author on accepted paper on browser-based detection of malicious ad-driven SE attacks.</li>
+              <li><strong>ICCWS 2026</strong> (UNC Wilmington) — abstract accepted; full paper submitted on cross-platform forensics best practices.</li>
+              <li><strong>ACM CODASPY (8th)</strong> — published research on denial-of-engineering-operations attacks in ICS and the <em>Laddis</em> deception tool.</li>
+              <li><strong>Digital Investigation</strong> &amp; <strong>ICSS Workshop</strong> — published SCADA forensics work on the PCCC protocol and a community SCADA testbed.</li>
             </ul>
           </div>
 
-          <div class="service-card">
-            <h3>Professional Service</h3>
-            <!-- TODO: Add professional roles and activities -->
+          <div class="service-card reveal" data-delay="3">
+            <h3>Cross-Sector Engagement</h3>
             <ul>
-              <li>Placeholder: Committee membership</li>
-              <li>Placeholder: Working group participation</li>
-              <li>Placeholder: Industry collaboration</li>
+              <li>Bridging academia and industry — translating SCADA, mobile, and platform-security research into deployable engineering practice.</li>
+              <li>Supporting U.S. national cybersecurity priorities in mobile ecosystem and public-facing platform protection.</li>
+              <li>Participating in cybersecurity research workshops and seminars to track evolving national and academic trends.</li>
+              <li>Pursuing CompTIA Security+ certification to deepen industry-aligned security practice.</li>
             </ul>
           </div>
         </div>
@@ -66,7 +72,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p>&copy; 2026 Saranyan Senthivel. All rights reserved. | <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank" rel="noopener noreferrer">Site Source</a></p>
+        <p>© <span id="year">2026</span> Saranyan Senthivel · <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank" rel="noopener noreferrer">Site Source</a></p>
       </div>
     </footer>
   </main>

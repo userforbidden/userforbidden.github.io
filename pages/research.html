@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research Areas - Saranyan Senthivel</title>
+  <meta name="description" content="Research areas — ICS/SCADA security, mobile and platform security, cybersecurity, and software systems.">
+  <meta name="theme-color" content="#05060f">
+  <title>Research — Saranyan Senthivel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="container">
       <div class="header-content">
@@ -20,7 +27,7 @@
           <a href="service.html" class="nav-link">Service</a>
           <a href="links.html" class="nav-link">Links</a>
         </nav>
-        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch color theme">Light mode</button>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch color theme">Light</button>
       </div>
     </div>
   </header>
@@ -28,24 +35,24 @@
   <main>
     <section class="section research-section">
       <div class="container">
-        <h2>Research Areas</h2>
-        <p class="section-subtitle">Core focus domains in cybersecurity and software engineering</p>
+        <h2 class="reveal">Research Areas</h2>
+        <p class="section-subtitle reveal" data-delay="1">Core focus domains in cybersecurity and software engineering.</p>
         <div class="card-grid">
-          <div class="research-card">
+          <div class="research-card reveal" data-delay="1">
             <h3>ICS / SCADA Security</h3>
-            <p>Securing critical infrastructure and control systems against emerging threats.</p>
+            <p>Securing critical infrastructure and control systems against emerging adversaries — protocol-level analysis, forensic tooling, and defensive architectures.</p>
           </div>
-          <div class="research-card">
+          <div class="research-card reveal" data-delay="2">
             <h3>Cybersecurity</h3>
-            <p>Defense mechanisms, threat analysis, and security protocols for digital systems.</p>
+            <p>Defense mechanisms, threat modeling, and security protocols across digital systems, with an emphasis on practical, deployable countermeasures.</p>
           </div>
-          <div class="research-card">
-            <h3>Mobile & Platform Security</h3>
-            <p>Security challenges in mobile devices and platform ecosystems.</p>
+          <div class="research-card reveal" data-delay="3">
+            <h3>Mobile &amp; Platform Security</h3>
+            <p>Investigating security challenges across mobile devices and the platforms they depend on — runtime hardening, app analysis, and supply-chain risk.</p>
           </div>
-          <div class="research-card">
+          <div class="research-card reveal" data-delay="4">
             <h3>Software Systems</h3>
-            <p>Designing and analyzing robust software architectures with security in mind.</p>
+            <p>Designing and analyzing robust software architectures with security as a first-class concern from design through deployment.</p>
           </div>
         </div>
       </div>
@@ -53,7 +60,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p>&copy; 2026 Saranyan Senthivel. All rights reserved. | <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank" rel="noopener noreferrer">Site Source</a></p>
+        <p>© <span id="year">2026</span> Saranyan Senthivel · <a href="https://github.com/userforbidden/userforbidden.github.io" target="_blank" rel="noopener noreferrer">Site Source</a></p>
       </div>
     </footer>
   </main>
